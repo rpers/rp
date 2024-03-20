@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listed Texts for Names</title>
+<style>
+    body {
+        background-color: white;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 5px; /* Add padding to the sides */
+        margin-top: 15%;
+    }
+
+    .left-names {
+        width: 35%;
+        margin-left: 10px;
+        text-align: center;
+    }
+ 
+    .right-names {
+        width: 35%;
+        margin-right: 10px;
+        text-align: center;
+    }
+  
+    .center {
+      margin: auto;
+      margin-top: 30%;
+      width: 35%;
+      
+    }
+
+    .name-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .name-list li {
+        margin-bottom: 25px;
+    }
+
+    .name-list li button {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid black;
+        border-radius: 5px;
+        background-color: white;
+        cursor: pointer;
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 50% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        border-radius: 15px;
+        width: 60%;
+        text-align: center;
+    }
+
+    .modal-content img {
+        width: 150px;
+        height: 150px;
+        border: 4px solid gold;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .modal-content p {
+        margin: 5px;
+        text-align: left;
+    }
+
+    .visit-profile-button {
+        margin-top: 20px;
+        margin-bottom: -20px;
+        padding: 10px;
+        border: 2px solid black;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div class="center">
+      <ul class="name-list">
+        <li><button onclick="openModal('gav', '20', 'images/gav.jpg', 'https://www.facebook.com/gavstr19')">gav</button></li>           
+      </ul>
+    </div>
+<div class="container">
+    
+    <div class="left-names">
+        <ul class="name-list">
+            <li><button onclick="openModal('John Doe', '30', 'https://via.placeholder.com/150', 'https://www.facebook.com/johndoe')">John Doe</button></li>
+            <li><button onclick="openModal('Jane Smith', '25', 'https://via.placeholder.com/150', 'https://www.facebook.com/janesmith')">Jane Smith</button></li>
+            <li><button onclick="openModal('Michael Johnson', '35', 'https://via.placeholder.com/150', 'https://www.facebook.com/michaeljohnson')">Michael Johnson</button></li>
+            <li><button onclick="openModal('John Doe', '30', 'https://via.placeholder.com/150', 'https://www.facebook.com/johndoe')">John Doe</button></li>
+            <li><button onclick="openModal('Jane Smith', '25', 'https://via.placeholder.com/150', 'https://www.facebook.com/janesmith')">Jane Smith</button></li>
+            <li><button onclick="openModal('Michael Johnson', '35', 'https://via.placeholder.com/150', 'https://www.facebook.com/michaeljohnson')">Michael Johnson</button></li>
+        </ul>
+    </div>
+    <div class="right-names">
+        <ul class="name-list">
+            <li><button onclick="openModal('Emily Davis', '28', 'https://via.placeholder.com/150', 'https://www.facebook.com/emilydavis')">Emily Davis</button></li>
+            <li><button onclick="openModal('David Wilson', '40', 'https://via.placeholder.com/150', 'https://www.facebook.com/davidwilson')">David Wilson</button></li>
+            <li><button onclick="openModal('Sarah Brown', '22', 'https://via.placeholder.com/150', 'https://www.facebook.com/sarahbrown')">Sarah Brown</button></li>
+            <li><button onclick="openModal('Emily Davis', '28', 'https://via.placeholder.com/150', 'https://www.facebook.com/emilydavis')">Emily Davis</button></li>
+            <li><button onclick="openModal('David Wilson', '40', 'https://via.placeholder.com/150', 'https://www.facebook.com/davidwilson')">David Wilson</button></li>
+            <li><button onclick="openModal('Sarah Brown', '22', 'https://via.placeholder.com/150', 'https://www.facebook.com/sarahbrown')">Sarah Brown</button></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modals -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <img id="modal-img" src="" alt="User Image">
+        <p id="modal-name"></p>
+        <p id="modal-age"></p>
+        <button class="visit-profile-button" id="visit-profile-btn">Visit Profile</button>
+    </div>
+</div>
+
+<script>
+    function openModal(name, age, imageUrl, profileUrl) {
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("modal-img");
+        var modalName = document.getElementById("modal-name");
+        var modalAge = document.getElementById("modal-age");
+        var visitProfileBtn = document.getElementById("visit-profile-btn");
+        
+        modalImg.src = imageUrl;
+        modalName.textContent = "Name: " + name;
+        modalAge.textContent = "Age: " + age;
+
+        visitProfileBtn.onclick = function() {
+            window.open(profileUrl, '_blank');
+        };
+
+        modal.style.display = "block";
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+
+    // Prevent modal from closing when clicking inside the modal content
+    document.querySelector('.modal-content').onclick = function(event) {
+        event.stopPropagation();
+    }
+</script>
+
+</body>
+</html>
